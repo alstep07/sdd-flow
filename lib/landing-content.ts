@@ -51,6 +51,70 @@ export const processSteps = [
   },
 ];
 
+export const rocketTradeoffOptions = [
+  {
+    id: "fast",
+    number: "01",
+    label: "Fast",
+    description: "MVPs to production in weeks, not quarters",
+  },
+  {
+    id: "affordable",
+    number: "02",
+    label: "Affordable",
+    description: "Senior expertise without the agency markup",
+  },
+  {
+    id: "reliable",
+    number: "03",
+    label: "Reliable",
+    description: "QA systems and zero-corner-cut standards",
+  },
+] as const;
+
+export type RocketTradeoffOptionId = (typeof rocketTradeoffOptions)[number]["id"];
+
+export const rocketTradeoffMessages: Record<
+  string,
+  {
+    title: string;
+    body: string;
+  }
+> = {
+  "affordable,fast,reliable": {
+    title: "We have liftoff.",
+    body: "All three unlocked. This is exactly what Depth Studio is built for.",
+  },
+  "affordable,fast": {
+    title: "Fast and affordable, but fragile.",
+    body: "You ship quickly and save money, but technical debt catches up.",
+  },
+  "affordable,reliable": {
+    title: "Reliable and affordable, but slow.",
+    body: "Solid and trustworthy, just not before the market moves.",
+  },
+  "fast,reliable": {
+    title: "Fast and reliable, but costly.",
+    body: "Top-tier quality at speed exists when the budget is enterprise-sized.",
+  },
+  fast: {
+    title: "Just fast.",
+    body: "Speed alone creates shortcuts that usually return as expensive fixes.",
+  },
+  affordable: {
+    title: "Just affordable.",
+    body: "Low spend helps only when the product still works, scales, and ships.",
+  },
+  reliable: {
+    title: "Just reliable.",
+    body: "Quality matters, but without speed and budget control it becomes hard to launch.",
+  },
+  "": {
+    title: "Pick your launch profile.",
+    body: "Flip the switches and watch how the usual tradeoff changes.",
+  },
+};
+
 export interface FlowGate {
   label: string;
   who: string;
