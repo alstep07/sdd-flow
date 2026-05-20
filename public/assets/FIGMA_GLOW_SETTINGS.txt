@@ -1,0 +1,11 @@
+Recommended Figma glow settings after import:
+
+1. Select imported SVG group/vector
+2. Stroke: #FF0A68
+3. Add Effects:
+   - Drop Shadow: X 0, Y 0, Blur 12, Spread 0, Color #FF0A68 70%
+   - Drop Shadow: X 0, Y 0, Blur 32, Spread 0, Color #FF0A68 35%
+   - Optional: Drop Shadow: X 0, Y 0, Blur 60, Spread 0, Color #FF0A68 18%
+
+These SVGs do NOT contain filters, blur, raster images, gradients, or background.
+They should remain sharp and editable in Figma.

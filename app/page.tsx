@@ -1,17 +1,26 @@
-import { CTASection } from "@/components/sections/CTASection";
-import { FlowSection } from "@/components/sections/FlowSection";
+import { AiCtaSection, FinalCtaSection } from "@/components/sections/CTASection";
+import { FlowModal } from "@/components/sections/FlowModal";
 import { HeroSection } from "@/components/sections/HeroSection";
-import { ProblemSection } from "@/components/sections/ProblemSection";
-import { ValuePropositionSection } from "@/components/sections/ValuePropositionSection";
+import { PillarsSection } from "@/components/sections/PillarsSection";
+import { ProcessSection } from "@/components/sections/ProcessSection";
+import { ServicesSection } from "@/components/sections/ServicesSection";
+import { SiteHeader } from "@/components/sections/SiteHeader";
+import { SiteFooter } from "@/components/shared/SiteFooter";
 
 export default function Home() {
   return (
-    <main>
-      <HeroSection />
-      <ProblemSection />
-      <FlowSection />
-      <ValuePropositionSection />
-      <CTASection />
-    </main>
+    <>
+      <SiteHeader />
+      <main id="top">
+        <HeroSection />
+        <PillarsSection />
+        <ServicesSection />
+        <ProcessSection />
+        <AiCtaSection />
+        <FinalCtaSection />
+      </main>
+      <SiteFooter />
+      <FlowModal />
+    </>
   );
 }

@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { SiteFooter } from "@/components/shared/SiteFooter";
 
 export const metadata: Metadata = {
-  title: "Depthspec | Spec-driven software delivery",
+  title: "Depth Studio | Think Deeply. Build Faster.",
   description:
-    "Depthspec turns product ideas into controlled, transparent, AI-assisted software delivery.",
+    "Depth Studio builds MVPs, web and mobile products, QA systems, and legacy upgrades with AI-augmented engineering.",
 };
 
 interface RootLayoutProps {
@@ -17,7 +16,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang="en" className="dark">
       <body className="bg-depth-bg text-depth-text antialiased">
         {children}
-        <SiteFooter />
       </body>
     </html>
   );

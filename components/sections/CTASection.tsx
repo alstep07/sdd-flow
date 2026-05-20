@@ -1,22 +1,36 @@
-import { Button } from "@/components/ui/Button";
+const contactHref = "mailto:hello@depth.studio";
 
-const bookingUrl = process.env.NEXT_PUBLIC_BOOKING_URL ?? "#";
-
-export function CTASection() {
+export function AiCtaSection() {
   return (
-    <section className="px-5 py-20 sm:px-10 lg:px-16" aria-labelledby="cta-title">
-      <div className="mx-auto max-w-7xl overflow-hidden rounded-3xl border border-depth-border bg-[linear-gradient(135deg,rgba(238,14,98,0.22),rgba(255,255,255,0.05)_48%,rgba(238,14,98,0.1))] p-8 shadow-depth-glow sm:p-12 lg:p-16">
-        <div className="max-w-3xl">
-          <h2 id="cta-title" className="font-display text-4xl font-black uppercase leading-none tracking-normal sm:text-6xl">
-            Ready to build with depth?
-          </h2>
-          <p className="mt-6 text-lg font-semibold leading-7 text-depth-muted sm:text-xl">
-            Bring the idea, the stalled product, or the messy rebuild. We will turn it into a clear plan and a product path you can trust.
-          </p>
-          <div className="mt-8">
-            <Button href={bookingUrl}>Book a call</Button>
-          </div>
-        </div>
+    <section className="cta-panel cta-panel--trail" aria-labelledby="ai-title">
+      <img src="/assets/energy_trail.png" alt="" />
+      <div>
+        <h2 id="ai-title">
+          AI moves fast. <span>Depth makes it right.</span>
+        </h2>
+        <p>
+          We use AI to accelerate specs, code, tests and documentation - but architecture, QA sign-off and product decisions stay human.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+export function FinalCtaSection() {
+  return (
+    <section className="cta-panel cta-panel--portal" id="cta-final" aria-labelledby="build-title">
+      <img src="/assets/neon_portal.png" alt="" />
+      <div>
+        <h2 id="build-title">
+          Ready to build <span>with depth?</span>
+        </h2>
+        <p>
+          Bring us an idea, old system or MVP concept. We&apos;ll turn it into a clear plan, realistic scope and working product.
+        </p>
+        <a className="button button--primary" href={contactHref}>
+          Book a strategy call
+          <img src="/assets/arrow-up-right.svg" alt="" />
+        </a>
       </div>
     </section>
   );
