@@ -6,8 +6,8 @@ import {
   rocketTradeoffOptions,
   type RocketTradeoffOptionId,
 } from "@/lib/landing-content";
+import { CONTACT_PAGE_HREF } from "@/lib/contact";
 
-const contactHref = "mailto:hello@depth.studio";
 const progressLevels = ["0%", "33.333%", "66.666%", "100%"] as const;
 
 type SelectedState = Record<RocketTradeoffOptionId, boolean>;
@@ -19,11 +19,8 @@ const initialSelectedState = rocketTradeoffOptions.reduce(
 
 export function RocketTradeoffSection() {
   const [selected, setSelected] = useState<SelectedState>(initialSelectedState);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [hasLaunched, setHasLaunched] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const lastFocusedElement = useRef<HTMLElement | null>(null);
-  const closeButtonRef = useRef<HTMLButtonElement | null>(null);
 
   const selectedCount = useMemo(() => Object.values(selected).filter(Boolean).length, [selected]);
   const selectedKey = useMemo(
@@ -50,44 +47,12 @@ export function RocketTradeoffSection() {
     }
   }, [hasLaunched, isAllSelected]);
 
-  useEffect(() => {
-    document.body.classList.toggle("is-contact-modal-open", isModalOpen);
-
-    if (isModalOpen) {
-      closeButtonRef.current?.focus();
-    } else {
-      lastFocusedElement.current?.focus();
-    }
-
-    return () => {
-      document.body.classList.remove("is-contact-modal-open");
-    };
-  }, [isModalOpen]);
-
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setIsModalOpen(false);
-    };
-
-    document.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, []);
-
   const toggleOption = (id: RocketTradeoffOptionId) => {
     setSelected((current) => ({ ...current, [id]: !current[id] }));
   };
 
-  const openModal = () => {
-    lastFocusedElement.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
-    setIsModalOpen(true);
-  };
-
   return (
-    <>
-      <section className="rocket-tradeoff" aria-labelledby="rocket-tradeoff-title">
+    <section className="rocket-tradeoff" aria-labelledby="rocket-tradeoff-title">
         <canvas className="rocket-tradeoff__confetti" ref={canvasRef} aria-hidden="true" />
 
         <div className="rocket-tradeoff__intro">
@@ -154,41 +119,20 @@ export function RocketTradeoffSection() {
             <span>Result</span>
             <strong>{message.title}</strong>
             <p>{message.body}</p>
-            <button className="button button--primary rocket-tradeoff__cta" type="button" disabled={!isAllSelected} onClick={openModal}>
-              Book a strategy call
+            <a
+              className="button button--primary rocket-tradeoff__cta"
+              href={isAllSelected ? CONTACT_PAGE_HREF : undefined}
+              aria-disabled={!isAllSelected}
+              onClick={(event) => {
+                if (!isAllSelected) event.preventDefault();
+              }}
+            >
+              Book a Discovery Call
               <img src="/assets/arrow-up-right.svg" alt="" />
-            </button>
+            </a>
           </div>
         </div>
       </section>
-
-      <div className="contact-modal" aria-hidden={!isModalOpen}>
-        <div className="contact-modal__backdrop" onClick={() => setIsModalOpen(false)} />
-        <section className="contact-modal__panel" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
-          <button
-            className="contact-modal__close"
-            type="button"
-            aria-label="Close contact modal"
-            onClick={() => setIsModalOpen(false)}
-            ref={closeButtonRef}
-          >
-            <span />
-            <span />
-          </button>
-          <span className="eyebrow">Ready for launch</span>
-          <h2 id="contact-modal-title">
-            Tell us what <span>you want to build.</span>
-          </h2>
-          <p>
-            Send us the product idea, system problem, or MVP goal. We will turn it into a clear first conversation about scope, risks, and launch path.
-          </p>
-          <a className="button button--primary" href={contactHref}>
-            Email Depth Studio
-            <img src="/assets/arrow-up-right.svg" alt="" />
-          </a>
-        </section>
-      </div>
-    </>
   );
 }
 

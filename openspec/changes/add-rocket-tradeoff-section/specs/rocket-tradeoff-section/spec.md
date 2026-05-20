@@ -28,19 +28,15 @@ The rocket tradeoff section SHALL let users toggle Fast, Affordable, and Reliabl
 #### Scenario: Selecting all three unlocks the CTA
 - **WHEN** Fast, Affordable, and Reliable are all selected
 - **THEN** the rocket reaches launch state
-- **AND** the strategy-call CTA becomes available
+- **AND** the discovery-call CTA becomes available
 
-### Requirement: Unlocked CTA opens contact modal
-The unlocked strategy-call CTA SHALL open a contact modal.
+### Requirement: Unlocked CTA opens contact page
+The unlocked discovery-call CTA SHALL navigate to the dedicated contact page.
 
-#### Scenario: Contact modal opens from unlocked CTA
+#### Scenario: Contact page opens from unlocked CTA
 - **GIVEN** all three options are selected
-- **WHEN** the user activates the strategy-call CTA
-- **THEN** a contact modal appears with a clear next step to contact Depth Studio
-
-#### Scenario: Contact modal can be dismissed
-- **WHEN** the contact modal is open
-- **THEN** clicking the close button, clicking the backdrop, or pressing Escape closes the modal
+- **WHEN** the user activates the discovery-call CTA
+- **THEN** the browser navigates to `/contact`
 
 ### Requirement: Section remains responsive and accessible
 The rocket tradeoff section SHALL be usable on mobile and desktop.

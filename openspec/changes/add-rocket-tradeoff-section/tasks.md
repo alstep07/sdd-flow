@@ -6,11 +6,11 @@
 
 - [x] Add rocket tradeoff content to shared landing content.
 - [x] Implement the interactive rocket tradeoff section.
-- [x] Add a contact modal opened by the unlocked CTA.
+- [x] Link the unlocked CTA to the dedicated contact page.
 - [x] Insert the section between Services and Process on the homepage.
 - [x] Add responsive scoped styles.
 
 ## 3. Verification
 
 - [x] Run a production build.
-- [x] Smoke-check the homepage and the unlock interaction.
+- [x] Smoke-check the homepage, contact navigation, and the unlock interaction.

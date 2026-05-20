@@ -14,7 +14,7 @@ The user first sees what Depth Studio offers, then interacts with the tradeoff p
 
 ### 3. Use a scoped client component
 
-The component owns toggle state, rocket progress, reduced-motion-friendly confetti, and contact modal state. Static homepage sections remain server-rendered.
+The component owns toggle state, rocket progress, and reduced-motion-friendly confetti. Static homepage sections remain server-rendered.
 
 ### 4. Preserve the landing visual language
 
@@ -23,4 +23,4 @@ The design reuses the existing dark background, hot pink accents, gradient borde
 ## Risks / Trade-offs
 
 - The section adds client-side JavaScript to the homepage. This is limited to one focused component.
-- Contact handling is currently mailto-based because the project does not yet define a booking provider or backend form endpoint.
+- Contact handling routes to `/contact`, where the Tally discovery form is embedded.

@@ -1,4 +1,4 @@
-const contactHref = "mailto:hello@depth.studio";
+import { CONTACT_PAGE_HREF } from "@/lib/contact";
 
 export function HeroSection() {
   return (
@@ -21,8 +21,8 @@ export function HeroSection() {
         <p className="hero__tagline">
           We build MVPs, web &amp; mobile products, QA systems and legacy upgrades using senior expertise, QA discipline and AI-powered workflows
         </p>
-        <a className="button button--primary" href={contactHref}>
-          Book a strategy call
+        <a className="button button--primary" href={CONTACT_PAGE_HREF}>
+          Discuss Your Project
           <img src="/assets/arrow-up-right.svg" alt="" />
         </a>
       </div>
