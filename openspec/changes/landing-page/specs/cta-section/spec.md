@@ -1,19 +1,15 @@
 ## ADDED Requirements
 
 ### Requirement: CTA section provides a closing call to action
-The CTA section SHALL appear near the bottom of the page, above the footer. It SHALL contain a short headline, a supporting sentence, and a "Book a call" button linking to `NEXT_PUBLIC_BOOKING_URL` (falling back to `#` if unset).
+The CTA section SHALL appear near the bottom of the page, above the footer. It SHALL contain a short headline, a supporting sentence, and a "Discuss Your Project" button linking to `/contact`.
 
 #### Scenario: CTA section renders all elements
 - **WHEN** a user scrolls to the CTA section
-- **THEN** a headline, supporting sentence, and "Book a call" button are all visible
+- **THEN** a headline, supporting sentence, and "Discuss Your Project" button are all visible
 
-#### Scenario: Booking URL is wired correctly
-- **WHEN** `NEXT_PUBLIC_BOOKING_URL` is set
-- **THEN** the button `href` resolves to that URL
-
-#### Scenario: Fallback when URL is unset
-- **WHEN** `NEXT_PUBLIC_BOOKING_URL` is undefined
-- **THEN** the button renders with `href="#"` and no runtime error occurs
+#### Scenario: Contact route is wired correctly
+- **WHEN** the CTA section renders
+- **THEN** the button `href` resolves to `/contact`
 
 ### Requirement: CTA section is visually distinct from surrounding sections
 The CTA section SHALL use a contrasting background or border to visually separate it from the value proposition section above and the footer below.

@@ -10,7 +10,7 @@ The root page SHALL reproduce the native reference landing page from `depth_land
 #### Scenario: Reference copy is preserved
 - **WHEN** the landing page renders
 - **THEN** the hero headline reads "Think Deeply. Build Faster."
-- **AND** the primary CTA reads "Book a strategy call"
+- **AND** the primary CTA reads "Discuss Your Project"
 - **AND** service and process card copy matches the reference content
 
 #### Scenario: Reference assets are used

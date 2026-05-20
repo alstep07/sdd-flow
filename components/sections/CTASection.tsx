@@ -1,4 +1,4 @@
-const contactHref = "mailto:hello@depth.studio";
+import { CONTACT_PAGE_HREF } from "@/lib/contact";
 
 export function AiCtaSection() {
   return (
@@ -27,8 +27,8 @@ export function FinalCtaSection() {
         <p>
           Bring us an idea, old system or MVP concept. We&apos;ll turn it into a clear plan, realistic scope and working product.
         </p>
-        <a className="button button--primary" href={contactHref}>
-          Book a strategy call
+        <a className="button button--primary" href={CONTACT_PAGE_HREF}>
+          Discuss Your Project
           <img src="/assets/arrow-up-right.svg" alt="" />
         </a>
       </div>

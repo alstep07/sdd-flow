@@ -5,22 +5,18 @@ The hero section SHALL be the first visible content on the landing page, appeari
 
 #### Scenario: Hero renders with all three elements
 - **WHEN** a user loads the landing page
-- **THEN** a headline, subheadline, and "Book a call" button are all visible without scrolling on a 1280×800 viewport
+- **THEN** a headline, subheadline, and "Discuss Your Project" button are all visible without scrolling on a 1280px by 800px viewport
 
 #### Scenario: Hero renders on mobile
 - **WHEN** a user loads the landing page on a 375px-wide viewport
 - **THEN** all three elements are visible and not clipped or overflowing horizontally
 
-### Requirement: Primary CTA navigates to booking URL
-The hero CTA button SHALL link to `NEXT_PUBLIC_BOOKING_URL`. If the env var is not set, the button SHALL link to `#` and SHALL NOT throw a runtime error.
+### Requirement: Primary CTA navigates to contact page
+The hero CTA button SHALL link to `/contact`.
 
-#### Scenario: Booking URL is configured
-- **WHEN** `NEXT_PUBLIC_BOOKING_URL` is set to a valid URL
-- **THEN** the CTA button `href` resolves to that URL
-
-#### Scenario: Booking URL is not set
-- **WHEN** `NEXT_PUBLIC_BOOKING_URL` is undefined
-- **THEN** the CTA button renders with `href="#"` and the page loads without error
+#### Scenario: Contact route is configured
+- **WHEN** the hero CTA renders
+- **THEN** the CTA button `href` resolves to `/contact`
 
 ### Requirement: Hero section is a server component
 The `HeroSection` component SHALL render as a React Server Component with no `use client` directive.
