@@ -1,9 +1,16 @@
+import Image from "next/image";
 import { CONTACT_PAGE_HREF } from "@/lib/contact";
 
 export function AiCtaSection() {
   return (
     <section className="cta-panel cta-panel--trail" aria-labelledby="ai-title">
-      <img src="/assets/energy_trail.png" alt="" />
+      <Image
+        src="/assets/energy_trail.png"
+        alt=""
+        width={536}
+        height={207}
+        sizes="(max-width: 700px) 100vw, 536px"
+      />
       <div>
         <h2 id="ai-title">
           AI moves fast. <span>Depth makes it right.</span>
@@ -19,7 +26,13 @@ export function AiCtaSection() {
 export function FinalCtaSection() {
   return (
     <section className="cta-panel cta-panel--portal" id="cta-final" aria-labelledby="build-title">
-      <img src="/assets/neon_portal.png" alt="" />
+      <Image
+        src="/assets/neon_portal.png"
+        alt=""
+        width={648}
+        height={282}
+        sizes="(max-width: 700px) 100vw, 648px"
+      />
       <div>
         <h2 id="build-title">
           Ready to build <span>with depth?</span>
@@ -29,7 +42,7 @@ export function FinalCtaSection() {
         </p>
         <a className="button button--primary" href={CONTACT_PAGE_HREF}>
           Discuss Your Project
-          <img src="/assets/arrow-up-right.svg" alt="" />
+          <img src="/assets/arrow-up-right.svg" alt="" width="31" height="31" />
         </a>
       </div>
     </section>

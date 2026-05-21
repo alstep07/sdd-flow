@@ -5,7 +5,7 @@ export function PillarsSection() {
     <section className="pillars" aria-label="Delivery pillars">
       {pillars.map((pillar) => (
         <div className="pillar" key={pillar.label}>
-          <img src={pillar.icon} alt="" />
+          <img src={pillar.icon} alt="" width="54" height="54" />
           <span>{pillar.label}</span>
         </div>
       ))}

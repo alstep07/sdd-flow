@@ -46,7 +46,7 @@ export default function ContactPage() {
 
           <a className="contact-fallback" href={TALLY_FORM_URL} target="_blank" rel="noreferrer">
             Having trouble with the form? Open it in a new tab.
-            <img src="/assets/arrow-up-right.svg" alt="" />
+            <img src="/assets/arrow-up-right.svg" alt="" width="20" height="20" />
           </a>
         </section>
       </main>

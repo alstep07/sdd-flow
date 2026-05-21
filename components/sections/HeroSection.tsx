@@ -1,10 +1,19 @@
+import Image from "next/image";
 import { CONTACT_PAGE_HREF } from "@/lib/contact";
 
 export function HeroSection() {
   return (
     <section className="hero" aria-labelledby="hero-title">
       <div className="hero__media" aria-hidden="true">
-        <img src="/assets/octopus.png" alt="" />
+        <Image
+          src="/assets/octopus.png"
+          alt=""
+          width={1254}
+          height={1254}
+          sizes="(max-width: 700px) 660px, (max-width: 1100px) 820px, 860px"
+          priority
+          fetchPriority="high"
+        />
       </div>
 
       <div className="hero__copy">
@@ -23,7 +32,7 @@ export function HeroSection() {
         </p>
         <a className="button button--primary" href={CONTACT_PAGE_HREF}>
           Discuss Your Project
-          <img src="/assets/arrow-up-right.svg" alt="" />
+          <img src="/assets/arrow-up-right.svg" alt="" width="31" height="31" />
         </a>
       </div>
 
