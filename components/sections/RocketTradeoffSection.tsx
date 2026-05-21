@@ -110,7 +110,7 @@ export function RocketTradeoffSection() {
                 ))}
               </span>
               <span className="rocket-tradeoff__rocket" style={{ bottom: progress }} aria-hidden="true">
-                <img src="/assets/rocket.svg" alt="" />
+                <img src="/assets/rocket.svg" alt="" width="29" height="29" />
               </span>
             </div>
           </div>
@@ -128,7 +128,7 @@ export function RocketTradeoffSection() {
               }}
             >
               Book a Discovery Call
-              <img src="/assets/arrow-up-right.svg" alt="" />
+              <img src="/assets/arrow-up-right.svg" alt="" width="31" height="31" />
             </a>
           </div>
         </div>
