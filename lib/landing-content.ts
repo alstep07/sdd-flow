@@ -28,6 +28,95 @@ export const services = [
   },
 ];
 
+export const serviceModalDetails = [
+  {
+    title: "MVP Development",
+    slug: "mvp-development",
+    intro:
+      "Validate your idea with a focused, scalable MVP built for real users, real feedback, and fast iteration.",
+    bestFor: [
+      "Startup founders validating a new product idea",
+      "Teams that need to launch quickly without overbuilding",
+      "Businesses testing a new digital service or internal tool",
+    ],
+    whatWeDo: [
+      "Define the core product scope",
+      "Design key user flows and interface structure",
+      "Build the essential web or mobile functionality",
+      "Set up the foundation for future scaling",
+      "Validate the product through QA before release",
+    ],
+    outcome:
+      "A launch-ready MVP with the right feature set, clean technical foundation, and a clear path for the next product iterations.",
+    cta: "Discuss MVP Development",
+  },
+  {
+    title: "Web & Mobile",
+    slug: "web-mobile",
+    intro:
+      "Design and build high-performance web and mobile experiences that feel sharp, reliable, and easy to use.",
+    bestFor: [
+      "Companies building a new customer-facing product",
+      "Teams improving an existing web or mobile experience",
+      "Businesses that need responsive, scalable, production-ready interfaces",
+    ],
+    whatWeDo: [
+      "Build responsive web applications",
+      "Create mobile-first interfaces and user flows",
+      "Develop clean frontend architecture",
+      "Integrate APIs, authentication, payments, and third-party services",
+      "Optimize performance, usability, and reliability",
+    ],
+    outcome:
+      "A polished digital product that works smoothly across devices and gives users a clear, modern, high-quality experience.",
+    cta: "Discuss Web & Mobile",
+  },
+  {
+    title: "QA and Testing",
+    slug: "qa-testing",
+    intro:
+      "Build quality into your product with structured manual testing, automation, and CI/CD validation.",
+    bestFor: [
+      "Teams preparing for release",
+      "Products with growing regression risks",
+      "Companies that need better test coverage and delivery confidence",
+      "Teams moving from manual-only QA to automation",
+    ],
+    whatWeDo: [
+      "Create manual test coverage for critical flows",
+      "Design regression and smoke testing strategies",
+      "Build automated tests for web and product workflows",
+      "Integrate tests into CI/CD pipelines",
+      "Improve bug reporting, traceability, and release confidence",
+    ],
+    outcome:
+      "A more stable product with clearer quality gates, faster feedback loops, and fewer critical issues reaching users.",
+    cta: "Discuss QA and Testing",
+  },
+  {
+    title: "AI & Tools Integration",
+    slug: "ai-tools-integration",
+    intro:
+      "Integrate modern AI and automation tools into your existing systems to reduce manual work and improve operational speed.",
+    bestFor: [
+      "Teams with repetitive manual workflows",
+      "Companies that want to connect internal tools and data",
+      "Businesses exploring AI-assisted operations",
+      "Products that need smarter automation or workflow support",
+    ],
+    whatWeDo: [
+      "Analyze existing workflows and tool gaps",
+      "Integrate AI assistants, automation tools, and third-party APIs",
+      "Connect internal systems, forms, CRMs, dashboards, or knowledge bases",
+      "Build lightweight internal tools for teams",
+      "Improve process efficiency without rebuilding everything from scratch",
+    ],
+    outcome:
+      "A more connected and efficient system where modern tools support your team instead of creating more operational complexity.",
+    cta: "Discuss AI & Tools Integration",
+  },
+] as const;
+
 export const processSteps = [
   {
     icon: "/assets/discover-search.svg",
