@@ -1,8 +1,28 @@
 export const pillars = [
-  { icon: "/assets/document-spec.svg", label: "Spec first" },
-  { icon: "/assets/spark-ai.svg", label: "AI-augmented" },
-  { icon: "/assets/shield-check.svg", label: "QA-driven" },
-  { icon: "/assets/approval-check-user.svg", label: "Human approved" },
+  {
+    icon: "/assets/document-spec.svg",
+    kicker: "Clarity",
+    label: "Spec first",
+    description: "Clear scope before code",
+  },
+  {
+    icon: "/assets/spark-ai.svg",
+    kicker: "Speed",
+    label: "AI-augmented",
+    description: "Faster delivery with expert control",
+  },
+  {
+    icon: "/assets/shield-check.svg",
+    kicker: "Quality",
+    label: "QA-driven",
+    description: "Quality built into every stage",
+  },
+  {
+    icon: "/assets/approval-check-user.svg",
+    kicker: "Control",
+    label: "Human approved",
+    description: "Senior review before release",
+  },
 ];
 
 export const services = [
