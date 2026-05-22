@@ -16,6 +16,9 @@ export function ServicesSection() {
   const [activeService, setActiveService] = useState<ServiceModalDetail | null>(null);
   const [isClosing, setIsClosing] = useState(false);
   const [isClosePreview, setIsClosePreview] = useState(false);
+  const servicesRef = useRef<HTMLElement | null>(null);
+  const sonarCanvasRef = useRef<HTMLCanvasElement | null>(null);
+  const sonarPointerRef = useRef({ x: -9999, y: -9999, active: false });
   const lastFocusedElement = useRef<HTMLElement | null>(null);
   const modalRef = useRef<HTMLElement | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
@@ -23,6 +26,21 @@ export function ServicesSection() {
 
   const activeTitleId = useMemo(() => (activeService ? `service-modal-title-${activeService.slug}` : undefined), [activeService]);
   const activeDescriptionId = useMemo(() => (activeService ? `service-modal-intro-${activeService.slug}` : undefined), [activeService]);
+
+  const updateServicesPointer = (clientX: number, clientY: number) => {
+    if (!sonarCanvasRef.current) return;
+
+    const bounds = sonarCanvasRef.current.getBoundingClientRect();
+    sonarPointerRef.current = {
+      x: clientX - bounds.left,
+      y: clientY - bounds.top,
+      active: true,
+    };
+  };
+
+  const hideServicesPointer = () => {
+    sonarPointerRef.current.active = false;
+  };
 
   const openService = (detail: ServiceModalDetail) => {
     if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
@@ -97,9 +115,178 @@ export function ServicesSection() {
     };
   }, []);
 
+  useEffect(() => {
+    const canvas = sonarCanvasRef.current;
+    const section = servicesRef.current;
+    const context = canvas?.getContext("2d");
+
+    if (!canvas || !section || !context) return;
+
+    const spacing = 38;
+    const maxDistance = 130;
+    const dots: Array<{ x: number; y: number; glow: number; seed: number }> = [];
+    let width = 0;
+    let height = 0;
+    let frame = 0;
+    let animationFrame = 0;
+
+    const clamp01 = (value: number) => Math.max(0, Math.min(1, value));
+    const ease = (value: number) => 1 - Math.pow(1 - value, 2.4);
+
+    const resize = () => {
+      const rect = canvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+
+      width = rect.width;
+      height = rect.height;
+      canvas.width = Math.max(1, Math.round(width * dpr));
+      canvas.height = Math.max(1, Math.round(height * dpr));
+      context.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      dots.length = 0;
+
+      const cols = Math.ceil(width / spacing) + 1;
+      const rows = Math.ceil(height / spacing) + 1;
+      const offsetX = (width - (cols - 1) * spacing) / 2;
+      const offsetY = (height - (rows - 1) * spacing) / 2;
+
+      for (let row = 0; row < rows; row += 1) {
+        for (let col = 0; col < cols; col += 1) {
+          dots.push({
+            x: offsetX + col * spacing,
+            y: offsetY + row * spacing,
+            glow: 0,
+            seed: Math.random() * Math.PI * 2,
+          });
+        }
+      }
+    };
+
+    const draw = () => {
+      frame += 0.014;
+      context.clearRect(0, 0, width, height);
+
+      const pointer = sonarPointerRef.current;
+      const depth = pointer.active ? clamp01(pointer.y / Math.max(height, 1)) : 0.48;
+      const sonarRadius = 62 + depth * 74 + Math.sin(frame * 4) * 1.5;
+
+      for (const dot of dots) {
+        const dx = dot.x - pointer.x;
+        const dy = dot.y - pointer.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        const hover = pointer.active && distance < maxDistance ? ease(1 - distance / maxDistance) : 0;
+        const sonarBand = pointer.active ? Math.max(0, 1 - Math.abs(distance - sonarRadius) / 22) * 0.16 : 0;
+        const idle = (Math.sin(frame * 0.6 + dot.seed) * 0.5 + 0.5) * 0.018 + 0.008;
+        const target = Math.max(idle, hover, sonarBand);
+
+        dot.glow += (target - dot.glow) * 0.1;
+
+        if (dot.glow > 0.06) {
+          const glowRadius = 7 + dot.glow * 26;
+          const gradient = context.createRadialGradient(dot.x, dot.y, 0, dot.x, dot.y, glowRadius);
+          gradient.addColorStop(0, `rgba(255, 58, 145, ${(dot.glow * 0.18).toFixed(3)})`);
+          gradient.addColorStop(0.42, `rgba(238, 14, 98, ${(dot.glow * 0.075).toFixed(3)})`);
+          gradient.addColorStop(1, "rgba(238, 14, 98, 0)");
+          context.fillStyle = gradient;
+          context.beginPath();
+          context.arc(dot.x, dot.y, glowRadius, 0, Math.PI * 2);
+          context.fill();
+        }
+
+        const coreSize = 1.1 + dot.glow * 2.4;
+        const coreAlpha = 0.075 + dot.glow * 0.42;
+        context.strokeStyle = `rgba(238, 14, 98, ${coreAlpha.toFixed(3)})`;
+        context.lineWidth = 0.45;
+        context.beginPath();
+        context.moveTo(dot.x - coreSize, dot.y);
+        context.lineTo(dot.x + coreSize, dot.y);
+        context.stroke();
+        context.beginPath();
+        context.moveTo(dot.x, dot.y - coreSize);
+        context.lineTo(dot.x, dot.y + coreSize);
+        context.stroke();
+
+        context.fillStyle = `rgba(255, ${Math.round(150 * dot.glow)}, 230, ${(0.16 + dot.glow * 0.42).toFixed(3)})`;
+        context.beginPath();
+        context.arc(dot.x, dot.y, 0.65 + dot.glow * 1.4, 0, Math.PI * 2);
+        context.fill();
+      }
+
+      if (pointer.active) {
+        const pulse = Math.sin(frame * 4) * 1.5;
+        context.strokeStyle = "rgba(238, 14, 98, 0.32)";
+        context.lineWidth = 0.7;
+        context.beginPath();
+        context.arc(pointer.x, pointer.y, 9 + pulse, 0, Math.PI * 2);
+        context.stroke();
+
+        context.strokeStyle = "rgba(255, 58, 145, 0.18)";
+        context.lineWidth = 0.5;
+        context.beginPath();
+        context.arc(pointer.x, pointer.y, 4, 0, Math.PI * 2);
+        context.stroke();
+
+        context.fillStyle = "rgba(255, 180, 240, 0.68)";
+        context.beginPath();
+        context.arc(pointer.x, pointer.y, 1.5, 0, Math.PI * 2);
+        context.fill();
+
+        const crosshair = 16;
+        context.strokeStyle = "rgba(238, 14, 98, 0.14)";
+        context.lineWidth = 0.5;
+        context.beginPath();
+        context.moveTo(pointer.x - crosshair, pointer.y);
+        context.lineTo(pointer.x - 6, pointer.y);
+        context.stroke();
+        context.beginPath();
+        context.moveTo(pointer.x + 6, pointer.y);
+        context.lineTo(pointer.x + crosshair, pointer.y);
+        context.stroke();
+        context.beginPath();
+        context.moveTo(pointer.x, pointer.y - crosshair);
+        context.lineTo(pointer.x, pointer.y - 6);
+        context.stroke();
+        context.beginPath();
+        context.moveTo(pointer.x, pointer.y + 6);
+        context.lineTo(pointer.x, pointer.y + crosshair);
+        context.stroke();
+
+        context.font = "9px monospace";
+        context.fillStyle = "rgba(255, 58, 145, 0.3)";
+        context.fillText(`${Math.round(200 + depth * 800)}m`, pointer.x + 13, pointer.y - 7);
+
+        context.strokeStyle = "rgba(238, 14, 98, 0.1)";
+        context.lineWidth = 0.7;
+        context.beginPath();
+        context.arc(pointer.x, pointer.y, sonarRadius, 0, Math.PI * 2);
+        context.stroke();
+      }
+
+      animationFrame = requestAnimationFrame(draw);
+    };
+
+    const resizeObserver = new ResizeObserver(resize);
+    resizeObserver.observe(section);
+    resize();
+    draw();
+
+    return () => {
+      cancelAnimationFrame(animationFrame);
+      resizeObserver.disconnect();
+    };
+  }, []);
+
   return (
     <>
-      <section className="section services" aria-labelledby="services-title">
+      <section
+        className="section services"
+        aria-labelledby="services-title"
+        ref={servicesRef}
+        onPointerEnter={(event) => updateServicesPointer(event.clientX, event.clientY)}
+        onPointerMove={(event) => updateServicesPointer(event.clientX, event.clientY)}
+        onPointerLeave={hideServicesPointer}
+      >
+        <canvas className="services__sonar" ref={sonarCanvasRef} aria-hidden="true" />
         <div className="section__intro">
           <span className="eyebrow">Services</span>
           <h2 id="services-title">Digital products built with depth</h2>
