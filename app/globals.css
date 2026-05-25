@@ -1518,10 +1518,10 @@ main,
 
 .step:not(:last-child)::after {
   position: absolute;
-  top: 70px;
+  top: 34px;
   right: 0;
   width: 1px;
-  height: 176px;
+  height: 148px;
   content: "";
   background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.22), transparent);
   opacity: 0.8;
