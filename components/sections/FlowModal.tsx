@@ -15,18 +15,22 @@ export function FlowModal({ openButtonId = "open-flow-modal" }: FlowModalProps) 
   const shellRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const openButton = document.getElementById(openButtonId);
-    if (!openButton) return;
-
     const handleOpen = () => {
       lastFocusedElement.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
       setIsOpen(true);
     };
 
-    openButton.addEventListener("click", handleOpen);
+    const handleDocumentClick = (event: MouseEvent) => {
+      if (!(event.target instanceof Element)) return;
+      if (!event.target.closest(`[id="${openButtonId}"]`)) return;
+
+      handleOpen();
+    };
+
+    document.addEventListener("click", handleDocumentClick);
 
     return () => {
-      openButton.removeEventListener("click", handleOpen);
+      document.removeEventListener("click", handleDocumentClick);
     };
   }, [openButtonId]);
 

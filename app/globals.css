@@ -1303,6 +1303,365 @@ main,
   gap: 18px;
 }
 
+.process-section {
+  position: relative;
+  min-height: 0;
+  margin-inline: calc(50% - 50vw);
+  padding: 92px max(5vw, calc((100vw - var(--max)) / 2)) 28px;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse at 50% 44%, rgba(255, 255, 255, 0.018), transparent 38%),
+    radial-gradient(circle at 0% 62%, rgba(238, 14, 98, 0.085), transparent 24%),
+    radial-gradient(circle at 100% 64%, rgba(238, 14, 98, 0.075), transparent 23%),
+    linear-gradient(180deg, rgba(1, 0, 1, 0) 0%, rgba(2, 2, 2, 0.34) 18%, #020202 34%, #030303 68%, rgba(1, 0, 1, 0) 100%);
+  z-index: 0;
+}
+
+.process-section::before {
+  position: absolute;
+  inset: 0;
+  z-index: -4;
+  content: "";
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+  background-size: 72px 72px;
+  opacity: 0.58;
+  mask-image:
+    linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.18) 18%, #000 34%, #000 66%, transparent 88%, transparent 100%),
+    radial-gradient(circle at 50% 45%, #000 0%, transparent 78%);
+  pointer-events: none;
+}
+
+.process-section::after {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  content: "";
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03), transparent 16%, transparent 84%, rgba(255, 255, 255, 0.03)),
+    radial-gradient(circle at 15% 50%, rgba(238, 14, 98, 0.09), transparent 20%),
+    radial-gradient(circle at 85% 50%, rgba(238, 14, 98, 0.07), transparent 20%);
+  mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.14) 20%, #000 36%, #000 64%, transparent 86%, transparent 100%);
+  opacity: 0.52;
+  pointer-events: none;
+}
+
+.process-bg-dots {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: radial-gradient(circle, rgba(238, 14, 98, 0.45) 1px, transparent 2px);
+  background-size: 42px 42px;
+  mask-image:
+    radial-gradient(circle at 18% 18%, #000 0%, transparent 18%),
+    radial-gradient(circle at 84% 22%, #000 0%, transparent 18%),
+    radial-gradient(circle at 80% 68%, #000 0%, transparent 18%),
+    linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.12) 22%, #000 38%, #000 62%, transparent 84%, transparent 100%);
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.process-grid-lens {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  opacity: 0.95;
+  mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.18) 18%, #000 34%, #000 62%, rgba(0, 0, 0, 0.16) 80%, transparent 100%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.plus {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  opacity: 0.46;
+  pointer-events: none;
+}
+
+.plus::before,
+.plus::after {
+  position: absolute;
+  content: "";
+  background: rgba(255, 255, 255, 0.32);
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.08);
+}
+
+.plus::before {
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+}
+
+.plus::after {
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 100%;
+}
+
+.plus--one {
+  top: 44%;
+  left: 2.4vw;
+}
+
+.plus--two {
+  top: 44%;
+  right: 2.4vw;
+}
+
+.plus--three {
+  top: 14%;
+  left: 15.5vw;
+  opacity: 0.24;
+}
+
+.plus--four {
+  top: 14%;
+  right: 15vw;
+  opacity: 0.24;
+}
+
+.process-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1520px;
+  margin: 0 auto;
+}
+
+.process-header {
+  max-width: 780px;
+  margin: 0 auto 54px;
+  text-align: center;
+}
+
+.process-label {
+  margin: 0 0 18px;
+  color: var(--pink);
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-transform: uppercase;
+  text-shadow:
+    0 0 14px rgba(238, 14, 98, 0.72),
+    0 0 34px rgba(238, 14, 98, 0.34);
+}
+
+.process-title {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.95);
+  font-family: "League Spartan", sans-serif;
+  font-size: 42px;
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  text-shadow:
+    0 0 18px rgba(255, 255, 255, 0.18),
+    0 10px 34px rgba(0, 0, 0, 0.72);
+}
+
+.process-subtitle {
+  max-width: 620px;
+  margin: 20px auto 0;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: clamp(16px, 1.25vw, 18px);
+  font-weight: 500;
+  line-height: 1.38;
+}
+
+.timeline {
+  position: relative;
+  margin: 0 auto;
+  padding-top: 86px;
+}
+
+.timeline-line {
+  position: absolute;
+  top: 27px;
+  right: 0;
+  left: 0;
+  height: 2px;
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(238, 14, 98, 0.22) 7%,
+      rgba(238, 14, 98, 0.95) 18%,
+      rgba(255, 255, 255, 0.62) 50%,
+      rgba(238, 14, 98, 0.95) 82%,
+      rgba(238, 14, 98, 0.22) 93%,
+      transparent
+    );
+  box-shadow:
+    0 0 8px rgba(238, 14, 98, 0.8),
+    0 0 28px rgba(238, 14, 98, 0.44);
+}
+
+.timeline-steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+}
+
+.step {
+  position: relative;
+  min-height: 250px;
+  padding: 0 44px;
+}
+
+.step:not(:last-child)::after {
+  position: absolute;
+  top: 70px;
+  right: 0;
+  width: 1px;
+  height: 176px;
+  content: "";
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.22), transparent);
+  opacity: 0.8;
+}
+
+.timeline-node {
+  position: absolute;
+  top: -82px;
+  left: 44px;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 35% 30%, #fff 0%, #ffd5e7 16%, var(--pink-hot) 42%, #9b073f 78%);
+  box-shadow:
+    0 0 0 6px rgba(238, 14, 98, 0.18),
+    0 0 16px rgba(238, 14, 98, 0.95),
+    0 0 48px rgba(238, 14, 98, 0.64);
+}
+
+.timeline-node::after {
+  position: absolute;
+  top: 42px;
+  left: 50%;
+  width: 1px;
+  height: 30px;
+  content: "";
+  background: linear-gradient(180deg, rgba(238, 14, 98, 0.9), transparent);
+  box-shadow: 0 0 12px rgba(238, 14, 98, 0.7);
+  transform: translateX(-50%);
+}
+
+.step-head {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-bottom: 26px;
+}
+
+.step-number {
+  display: inline-grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border: 1px solid rgba(238, 14, 98, 0.68);
+  border-radius: 12px;
+  color: var(--pink-hot);
+  background: rgba(238, 14, 98, 0.045);
+  box-shadow:
+    0 0 18px rgba(238, 14, 98, 0.18),
+    inset 0 0 18px rgba(238, 14, 98, 0.04);
+  font-size: 21px;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.step-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+}
+
+.step-icon img {
+  width: 56px;
+  height: 56px;
+  filter:
+    brightness(0) saturate(100%) invert(30%) sepia(98%) saturate(3953%) hue-rotate(316deg) brightness(106%) contrast(105%)
+    drop-shadow(0 0 8px rgba(238, 14, 98, 0.95))
+    drop-shadow(0 0 28px rgba(238, 14, 98, 0.45));
+}
+
+.step-title {
+  margin: 0 0 14px;
+  color: rgba(255, 255, 255, 0.95);
+  font-size: clamp(21px, 1.65vw, 26px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: 0;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.16);
+}
+
+.step-text {
+  max-width: 240px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: clamp(15px, 1.05vw, 17px);
+  font-weight: 500;
+  line-height: 1.34;
+}
+
+.process-cta-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 22px;
+}
+
+.process-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  padding: 0 0 14px;
+  border: 0;
+  border-bottom: 1px solid rgba(238, 14, 98, 0.52);
+  background: transparent;
+  color: var(--pink-hot);
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 1;
+  text-shadow: 0 0 14px rgba(238, 14, 98, 0.7);
+  cursor: pointer;
+  transition:
+    gap 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease;
+}
+
+.process-cta img {
+  width: 28px;
+  height: 28px;
+  filter: invert(30%) sepia(98%) saturate(3953%) hue-rotate(316deg) brightness(106%) contrast(105%);
+  transition: transform 180ms ease;
+}
+
+.process-cta:hover {
+  gap: 24px;
+  border-color: rgba(255, 90, 160, 0.9);
+  color: #ff5aa0;
+}
+
+.process-cta:hover img {
+  transform: translate(4px, -4px);
+}
+
+.process-cta:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.86);
+  outline-offset: 8px;
+}
+
 .rocket-tradeoff {
   position: relative;
   display: grid;
@@ -1953,6 +2312,10 @@ main,
     animation: none;
     filter: none;
     transform: none;
+  }
+
+  .process-grid-lens {
+    display: none;
   }
 }
 
@@ -2684,6 +3047,63 @@ main,
     max-width: 520px;
   }
 
+  .process-section {
+    min-height: 0;
+    padding: 78px 28px 34px;
+  }
+
+  .process-header {
+    margin-bottom: 42px;
+  }
+
+  .timeline {
+    padding-top: 0;
+  }
+
+  .timeline-line {
+    top: 8px;
+    right: auto;
+    left: 18px;
+    width: 2px;
+    height: calc(100% - 24px);
+    background:
+      linear-gradient(
+        180deg,
+        rgba(238, 14, 98, 0.9),
+        rgba(255, 255, 255, 0.44),
+        rgba(238, 14, 98, 0.9)
+      );
+  }
+
+  .timeline-steps {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+
+  .step {
+    min-height: auto;
+    padding: 0 0 0 72px;
+  }
+
+  .step:not(:last-child)::after {
+    display: none;
+  }
+
+  .timeline-node {
+    top: 12px;
+    left: 2px;
+    width: 34px;
+    height: 34px;
+  }
+
+  .timeline-node::after {
+    display: none;
+  }
+
+  .step-text {
+    max-width: 620px;
+  }
+
   .service-layers {
     grid-template-columns: repeat(12, minmax(0, 1fr));
     gap: 18px 0;
@@ -2877,6 +3297,51 @@ main,
   .button img,
   .text-link img {
     width: 25px;
+  }
+
+  .process-section {
+    padding: 64px 20px 28px;
+  }
+
+  .process-title {
+    font-size: 36px;
+  }
+
+  .process-subtitle {
+    font-size: 16px;
+  }
+
+  .step {
+    padding-left: 58px;
+  }
+
+  .step-head {
+    gap: 18px;
+  }
+
+  .step-number {
+    width: 46px;
+    height: 46px;
+    border-radius: 11px;
+    font-size: 19px;
+  }
+
+  .step-icon,
+  .step-icon img {
+    width: 48px;
+    height: 48px;
+  }
+
+  .step-title {
+    font-size: 22px;
+  }
+
+  .step-text {
+    font-size: 15px;
+  }
+
+  .process-cta {
+    font-size: 16px;
   }
 
   .metric {
