@@ -105,6 +105,12 @@ main,
   pointer-events: none;
 }
 
+.hero__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .hero__media::after {
   position: absolute;
   inset: 0;

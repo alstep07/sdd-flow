@@ -5,7 +5,7 @@ export function AiCtaSection() {
   return (
     <section className="cta-panel cta-panel--trail" aria-labelledby="ai-title">
       <Image
-        src="/assets/energy_trail.png"
+        src="/assets/energy_trail.avif"
         alt=""
         width={536}
         height={207}
@@ -27,7 +27,7 @@ export function FinalCtaSection() {
   return (
     <section className="cta-panel cta-panel--portal" id="cta-final" aria-labelledby="build-title">
       <Image
-        src="/assets/neon_portal.png"
+        src="/assets/neon_portal.avif"
         alt=""
         width={648}
         height={282}
