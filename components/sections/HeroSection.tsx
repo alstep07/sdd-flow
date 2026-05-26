@@ -6,11 +6,11 @@ export function HeroSection() {
     <section className="hero" aria-labelledby="hero-title">
       <div className="hero__media" aria-hidden="true">
         <Image
-          src="/assets/octopus.png"
+          src="/assets/octopus.avif"
           alt=""
-          width={1254}
-          height={1254}
-          sizes="(max-width: 700px) 660px, (max-width: 1100px) 820px, 860px"
+          width={2508}
+          height={2508}
+          sizes="(max-width: 700px) 660px, (max-width: 1100px) 820px, min(860px, 72vw)"
           priority
           fetchPriority="high"
         />
