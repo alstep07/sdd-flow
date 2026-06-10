@@ -1,6 +1,6 @@
 import { AiCtaSection, FinalCtaSection } from "@/components/sections/CTASection";
 import { FlowModal } from "@/components/sections/FlowModal";
-import { HeroSection } from "@/components/sections/HeroSection";
+import { IdeaSphereSection } from "@/components/IdeaSphere";
 import { PillarsSection } from "@/components/sections/PillarsSection";
 import { ProcessSection } from "@/components/sections/ProcessSection";
 import { RocketTradeoffSection } from "@/components/sections/RocketTradeoffSection";
@@ -12,8 +12,8 @@ export default function Home() {
   return (
     <>
       <SiteHeader />
+      <IdeaSphereSection />
       <main id="top">
-        <HeroSection />
         <PillarsSection />
         <ServicesSection />
         <RocketTradeoffSection />
